@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe de Casa | Kitchen Display System</title>
+  
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              gold: '#C5A059',
+              goldLight: '#E8D5A3',
+              goldDark: '#9F7C38',
+              espresso: '#1A1412',
+              darkBg: '#120E0D',
+              panel: '#1C1614',
+              panelBorder: 'rgba(197, 160, 89, 0.25)'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            cinzel: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    @keyframes pulseGold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.5); }
+      50% { box-shadow: 0 0 0 10px rgba(197, 160, 89, 0); }
+    }
+    .order-new-card {
+      animation: pulseGold 2s infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-brand-darkBg text-stone-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-gold selection:text-black">
+
+  <!-- ========================================================================= -->
+  <!-- KITCHEN AUTHENTICATION MODAL (STATION ACCESS GATE) -->
+  <!-- ========================================================================= -->
+  <div id="kitchen-auth-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+    <div class="bg-brand-panel border border-brand-panelBorder rounded-2xl max-w-sm w-full p-8 text-center space-y-6 shadow-2xl">
+      <div class="w-14 h-14 mx-auto rounded-full bg-brand-gold/15 border border-brand-gold/40 flex items-center justify-center text-brand-gold text-2xl">
+        👨‍🍳
+      </div>
+      <div>
+        <h2 class="font-serif text-2xl font-bold text-brand-goldLight">Kitchen Station</h2>
+        <p class="text-xs text-stone-400 mt-1">Authorized restaurant personnel only</p>
+      </div>
+
+      <form id="kitchen-login-form" onsubmit="handleKitchenLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-brand-gold font-semibold mb-1">Station Account</label>
+          <input type="email" id="kitchen-email-input" required
+                 placeholder="kitchen@cafedecasa.com"
+                 value="kitchen@cafedecasa.com"
+                 class="w-full text-sm py-2.5 px-3 bg-black/40 border border-brand-gold/30 rounded-xl text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+        </div>
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-brand-gold font-semibold mb-1">Station Passcode</label>
+          <input type="password" id="kitchen-pass-input" required autofocus
+                 placeholder="••••••••"
+                 class="w-full text-sm py-2.5 px-3 bg-black/40 border border-brand-gold/30 rounded-xl text-white focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold">
+          <p class="text-[10px] text-stone-500 mt-1">Testing passcode: <span class="font-mono text-brand-goldLight">ChefLaurent2026!</span> or <span class="font-mono text-brand-goldLight">8492</span></p>
+        </div>
+        <div id="kitchen-login-error" class="hidden text-xs text-rose-400 font-medium"></div>
+        <button type="submit" id="kitchen-login-btn"
+                class="w-full py-3 bg-brand-gold hover:bg-brand-goldDark text-brand-espresso font-bold uppercase tracking-wider text-xs rounded-xl transition shadow-lg cursor-pointer">
+          Unlock Station
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- KITCHEN DASHBOARD HEADER -->
+  <!-- ========================================================================= -->
+  <header class="bg-brand-espresso border-b border-brand-panelBorder sticky top-0 z-40 px-4 sm:px-8 py-3.5 shadow-md">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3">
+        <span class="text-2xl">👨‍🍳</span>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-serif text-lg sm:text-xl font-bold text-white tracking-wide">Cafe de Casa</h1>
+            <span class="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded bg-brand-gold/20 text-brand-gold border border-brand-gold/30">KDS LIVE</span>
+          </div>
+          <p class="text-[11px] text-stone-400">Kitchen Display &amp; Real-time Expediting</p>
+        </div>
+      </div>
+
+      <!-- Realtime Status, Station Notice & Clock -->
+      <div class="flex items-center gap-3 sm:gap-6">
+        <!-- Private Station Notice -->
+        <div class="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/40 border border-stone-800 text-[11px] text-stone-400">
+          <span>🔒</span> Authenticated Station
+        </div>
+
+        <!-- Live Realtime badge -->
+        <div id="realtime-status" class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="realtime-text">Realtime Live</span>
+        </div>
+
+        <!-- Clock -->
+        <div class="hidden sm:block text-right">
+          <div id="live-clock" class="font-mono text-sm font-bold text-brand-goldLight">--:--:--</div>
+          <div id="live-date" class="text-[10px] text-stone-400">Live Station</div>
+        </div>
+
+        <!-- Pending Count Badge -->
+        <div class="flex items-center gap-2 px-3 py-1 bg-brand-panel border border-brand-gold/40 rounded-lg">
+          <span class="text-xs text-stone-400">Active:</span>
+          <span id="orders-count-badge" class="font-mono text-sm font-bold text-brand-gold">0</span>
+        </div>
+
+        <!-- Sound toggle -->
+        <button id="sound-toggle-btn" onclick="toggleSound()" title="Toggle order alert chime"
+                class="p-2 rounded-lg bg-black/40 hover:bg-brand-gold/20 text-brand-goldLight border border-brand-gold/30 transition text-sm cursor-pointer flex items-center gap-1.5">
+          🔔 <span id="sound-label" class="hidden md:inline text-xs">Sound On</span>
+        </button>
+
+        <!-- Lock / Sign Out button -->
+        <button onclick="handleKitchenLogout()" title="Lock Station"
+                class="p-2 rounded-lg bg-black/40 hover:bg-stone-800 text-stone-400 hover:text-white border border-stone-700 transition text-sm cursor-pointer">
+          🔒
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- ORDERS BOARD -->
+  <!-- ========================================================================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-6">
+
+    <!-- Active Filter & Station Notice -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-brand-panelBorder">
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">Active Expeditor Queue</span>
+        <span class="text-stone-500">•</span>
+        <span class="text-xs text-stone-400">Orders placed by customers update automatically via Supabase Realtime</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="refreshOrders()" class="text-xs px-3 py-1 rounded bg-brand-panel border border-brand-gold/30 text-stone-300 hover:text-white transition flex items-center gap-1.5 cursor-pointer">
+          <span>🔄</span> Refresh Queue
+        </button>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-orders-state" class="py-24 text-center space-y-4">
+      <div class="w-20 h-20 mx-auto rounded-full bg-brand-panel border border-brand-panelBorder flex items-center justify-center text-4xl">
+        ✨
+      </div>
+      <h3 class="font-serif text-2xl font-bold text-stone-300">All Orders Cleared</h3>
+      <p class="text-xs text-stone-400 max-w-sm mx-auto">
+        The kitchen queue is currently clear. New customer orders placed via table QR code will appear here instantly.
+      </p>
+      <div class="pt-2">
+        <span class="inline-block text-[11px] text-stone-400 font-mono">Listening for live orders on Supabase Realtime...</span>
+      </div>
+    </div>
+
+    <!-- Orders Grid -->
+    <div id="orders-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Live cards rendered by JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- Supabase CDN Client & Unified Service Layer -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-service.js"></script>
+
+  <!-- ========================================================================= -->
+  <!-- KITCHEN DASHBOARD LOGIC -->
+  <!-- ========================================================================= -->
+  <script>
+    let activeOrders = [];
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    // Web Audio Synthesized Chime (no external audio file required)
+    function playOrderChime() {
+      if (!soundEnabled) return;
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const now = audioCtx.currentTime;
+        const osc1 = audioCtx.createOscillator();
+        const gain1 = audioCtx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(880, now); // A5
+        gain1.gain.setValueAtTime(0.3, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.6);
+        osc1.connect(gain1);
+        gain1.connect(audioCtx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.6);
+
+        const osc2 = audioCtx.createOscillator();
+        const gain2 = audioCtx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(1174.66, now + 0.15); // D6
+        gain2.gain.setValueAtTime(0.35, now + 0.15);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.9);
+        osc2.connect(gain2);
+        gain2.connect(audioCtx.destination);
+        osc2.start(now + 0.15);
+        osc2.stop(now + 0.9);
+      } catch (e) {
+        console.warn('Audio notice:', e);
+      }
+    }
+
+    // Toggle Sound
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      const label = document.getElementById('sound-label');
+      const btn = document.getElementById('sound-toggle-btn');
+      if (label) label.textContent = soundEnabled ? 'Sound On' : 'Muted';
+      if (btn) btn.classList.toggle('opacity-50', !soundEnabled);
+      if (soundEnabled) playOrderChime();
+    }
+
+    // Kitchen Login Handler
+    async function handleKitchenLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('kitchen-email-input').value;
+      const pass = document.getElementById('kitchen-pass-input').value;
+      const errEl = document.getElementById('kitchen-login-error');
+      const btn = document.getElementById('kitchen-login-btn');
+
+      if (errEl) errEl.classList.add('hidden');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'Verifying...';
+      }
+
+      try {
+        const res = await window.RestaurantAPI.loginKitchen(email, pass);
+        if (res && res.success) {
+          document.getElementById('kitchen-auth-modal').classList.add('hidden');
+          initDashboard();
+        } else {
+          if (errEl) {
+            errEl.textContent = res?.error || 'Authentication failed.';
+            errEl.classList.remove('hidden');
+          }
+        }
+      } catch (err) {
+        if (errEl) {
+          errEl.textContent = err.message || 'Login error.';
+          errEl.classList.remove('hidden');
+        }
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.textContent = 'Unlock Station';
+        }
+      }
+    }
+
+    // Lock Station / Sign Out
+    async function handleKitchenLogout() {
+      await window.RestaurantAPI.logoutKitchen();
+      document.getElementById('kitchen-auth-modal').classList.remove('hidden');
+      document.getElementById('kitchen-pass-input').value = '';
+      activeOrders = [];
+      renderOrders();
+    }
+
+    // Initialize Dashboard after authentication
+    async function initDashboard() {
+      await refreshOrders();
+
+      // Subscribe to Realtime orders with reconnection recovery
+      window.RestaurantAPI.subscribeToKitchenOrders(
+        (newOrder) => {
+          console.log('⚡ Realtime New Order Received:', newOrder);
+          playOrderChime();
+          const exists = activeOrders.some(o => o.id === newOrder.id || o.order_number === newOrder.order_number);
+          if (!exists) {
+            activeOrders.unshift(newOrder);
+          } else {
+            activeOrders = activeOrders.map(o => o.id === newOrder.id ? newOrder : o);
+          }
+          renderOrders();
+        },
+        (updated) => {
+          console.log('⚡ Realtime Order Update:', updated);
+          if (updated.status === 'completed' || updated.status === 'cancelled') {
+            activeOrders = activeOrders.filter(o => o.id !== updated.id);
+          } else {
+            const match = activeOrders.find(o => o.id === updated.id);
+            if (match) match.status = updated.status;
+          }
+          renderOrders();
+        },
+        (connectionState) => {
+          const statusEl = document.getElementById('realtime-status');
+          const textEl = document.getElementById('realtime-text');
+          if (connectionState === 'CONNECTED') {
+            statusEl.className = 'flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs font-semibold';
+            textEl.textContent = 'Realtime Live';
+          } else {
+            statusEl.className = 'flex items-center gap-2 px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs font-semibold';
+            textEl.textContent = 'Reconnecting...';
+          }
+        }
+      );
+
+      // Listen for recovery refresh
+      window.addEventListener('kds_refresh_needed', () => refreshOrders());
+    }
+
+    // Fetch active orders from backend
+    async function refreshOrders() {
+      try {
+        const res = await window.RestaurantAPI.getKitchenOrders();
+        if (res && res.success) {
+          activeOrders = res.orders || [];
+          renderOrders();
+        } else if (res?.error && res.error.includes('Unauthorized')) {
+          document.getElementById('kitchen-auth-modal').classList.remove('hidden');
+        }
+      } catch (err) {
+        console.error('Error fetching kitchen orders:', err);
+      }
+    }
+
+    // Render Orders to Grid
+    function renderOrders() {
+      const grid = document.getElementById('orders-grid');
+      const emptyState = document.getElementById('empty-orders-state');
+      const countBadge = document.getElementById('orders-count-badge');
+
+      if (countBadge) countBadge.textContent = activeOrders.length;
+
+      if (!activeOrders.length) {
+        if (grid) grid.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+        return;
+      }
+
+      if (emptyState) emptyState.classList.add('hidden');
+      if (!grid) return;
+
+      grid.innerHTML = activeOrders.map(order => {
+        const elapsedText = formatElapsed(order.placed_at);
+        const isNew = isRecent(order.placed_at);
+
+        return `
+          <div class="bg-brand-panel border border-brand-panelBorder rounded-2xl p-5 shadow-xl flex flex-col justify-between space-y-4 transition-all hover:border-brand-gold/60 ${isNew ? 'order-new-card' : ''}" id="order-card-${order.id}">
+            
+            <!-- Card Header: Prominent Table Number & Order Number -->
+            <div class="pb-3 border-b border-brand-panelBorder flex items-start justify-between">
+              <div>
+                <span class="text-[11px] font-bold uppercase tracking-widest text-brand-gold">Table Assignment</span>
+                <div class="text-3xl font-serif font-extrabold text-white tracking-wide">${order.table_number || 'TABLE --'}</div>
+                <div class="text-xs text-stone-400 font-medium">${order.table_section || 'Main Dining'}</div>
+              </div>
+              <div class="text-right">
+                <span class="inline-block px-2.5 py-0.5 rounded font-mono font-bold text-xs bg-black/60 text-brand-goldLight border border-brand-gold/30">
+                  ${order.order_number}
+                </span>
+                <div class="text-xs font-semibold text-stone-400 mt-1">${elapsedText}</div>
+              </div>
+            </div>
+
+            <!-- Items List -->
+            <div class="space-y-2.5 flex-1">
+              <div class="text-[10px] uppercase font-bold tracking-wider text-stone-400">Ordered Delicacies:</div>
+              <div class="space-y-2">
+                ${(order.items || []).map(item => `
+                  <div class="flex items-center justify-between bg-black/30 px-3 py-2 rounded-lg border border-white/5">
+                    <span class="font-semibold text-stone-100 text-sm sm:text-base">${item.item_name}</span>
+                    <span class="font-mono font-extrabold text-lg text-brand-gold ml-3">× ${item.quantity}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Special Instructions -->
+              ${order.special_instructions ? `
+                <div class="p-2.5 rounded-lg bg-amber-950/40 border border-amber-500/40 text-amber-200 text-xs mt-3 flex items-start gap-2">
+                  <span class="text-sm">📝</span>
+                  <div>
+                    <strong class="font-semibold uppercase tracking-wider text-[10px] text-amber-400 block">Chef Note:</strong>
+                    <span>"${order.special_instructions}"</span>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Footer: Complete Action -->
+            <div class="pt-3 border-t border-brand-panelBorder space-y-2">
+              <div class="flex items-center justify-between text-xs text-stone-400">
+                <span>Total Amount:</span>
+                <span class="font-mono font-bold text-sm text-stone-200">₹${order.total_amount}</span>
+              </div>
+              <button onclick="markOrderCompleted('${order.id}')"
+                      class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold uppercase tracking-wider text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer">
+                <span>✓</span> Mark Completed
+              </button>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Mark Completed Action (updates status in PostgreSQL, never deletes record)
+    async function markOrderCompleted(orderId) {
+      const card = document.getElementById(`order-card-${orderId}`);
+      const btn = card ? card.querySelector('button') : null;
+      if (btn) {
+        btn.innerHTML = '<span>✓</span> Order Completed!';
+        btn.className = 'w-full py-3 bg-emerald-700 text-white font-bold uppercase tracking-wider text-xs rounded-xl shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer';
+      }
+      if (card) {
+        card.classList.add('opacity-40', 'scale-95');
+      }
+
+      try {
+        const res = await window.RestaurantAPI.completeKitchenOrder(orderId);
+        if (res && res.success) {
+          setTimeout(() => {
+            activeOrders = activeOrders.filter(o => o.id !== orderId);
+            renderOrders();
+          }, 450);
+        } else {
+          alert('Could not complete order: ' + (res?.error || 'Unknown error'));
+          if (card) card.classList.remove('opacity-40', 'scale-95');
+        }
+      } catch (err) {
+        console.error('Error completing order:', err);
+        if (card) card.classList.remove('opacity-40', 'scale-95');
+      }
+    }
+
+    // Format helpers
+    function formatElapsed(dateString) {
+      if (!dateString) return 'Just now';
+      const now = new Date();
+      const placed = new Date(dateString);
+      const diffSec = Math.floor((now - placed) / 1000);
+
+      if (diffSec < 45) return 'Just now';
+      const diffMin = Math.floor(diffSec / 60);
+      if (diffMin < 60) return `${diffMin} min${diffMin > 1 ? 's' : ''} ago`;
+      const diffHr = Math.floor(diffMin / 60);
+      return `${diffHr} hr${diffHr > 1 ? 's' : ''} ago`;
+    }
+
+    function isRecent(dateString) {
+      if (!dateString) return true;
+      const diffSec = (new Date() - new Date(dateString)) / 1000;
+      return diffSec < 120; // 2 minutes
+    }
+
+    // Live Clock & Periodic Refresh
+    function updateClock() {
+      const now = new Date();
+      const clockEl = document.getElementById('live-clock');
+      const dateEl = document.getElementById('live-date');
+      if (clockEl) clockEl.textContent = now.toLocaleTimeString();
+      if (dateEl) dateEl.textContent = now.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Re-check order elapsed times every 15 seconds
+    setInterval(() => {
+      if (activeOrders.length) renderOrders();
+    }, 15000);
+
+    // Check session on startup
+    document.addEventListener('DOMContentLoaded', async () => {
+      const session = await window.RestaurantAPI.getKitchenSession();
+      if (session) {
+        document.getElementById('kitchen-auth-modal').classList.add('hidden');
+        initDashboard();
+      } else {
+        document.getElementById('kitchen-auth-modal').classList.remove('hidden');
+      }
+    });
+  </script>
+
+</body>
+</html>

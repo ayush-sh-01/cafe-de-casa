@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en" style="">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Cafe de Casa | Artisan Bistro, Curated Dining &amp; Fine Beverages</title>
+  <!-- BEGIN: External Styles and Tailwind -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&amp;family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"
+    rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              cream: '#FDFBF7',
+              ivory: '#F7F3EA',
+              parchment: '#EFE8DA',
+              gold: '#C5A059',
+              goldDark: '#9F7C38',
+              goldLight: '#E8D5A3',
+              espresso: '#1A1412',
+              charcoal: '#2D2522',
+              muted: '#716761'
+            }
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            cinzel: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <!-- END: External Styles and Tailwind -->
+  <!-- BEGIN: Custom CSS -->
+  <style data-purpose="custom-typography">
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #DFBA6E 0%, #C5A059 50%, #9F7C38 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #D4AF37 0%, #C5A059 50%, #A68036 100%);
+    }
+  </style>
+  <style data-purpose="decorative-borders">
+    .ornate-border {
+      border: 1px solid rgba(197, 160, 89, 0.35);
+      position: relative;
+    }
+
+    .ornate-border::before {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border: 1px solid rgba(197, 160, 89, 0.15);
+      pointer-events: none;
+    }
+
+    .gold-glow {
+      box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.25);
+    }
+
+    /* Luxury Shimmer Gold Button */
+    .btn-luxury-gold {
+      width: 140px;
+      height: 42px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #77530a, #ffd277, #77530a, #77530a, #ffd277, #77530a);
+      background-size: 250%;
+      background-position: left;
+      color: #ffd277;
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-position 1s ease, transform 0.2s ease;
+      overflow: hidden;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn-luxury-gold::before {
+      position: absolute;
+      content: attr(data-label);
+      color: #ffd277;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: calc(100% - 4px);
+      height: calc(100% - 4px);
+      border-radius: 6px;
+      transition: background-position 1s ease;
+      background-color: rgba(20, 15, 13, 0.94);
+      background-size: 200%;
+      z-index: 1;
+    }
+
+    .btn-luxury-gold:hover {
+      background-position: right;
+      box-shadow: 0 0 18px rgba(255, 210, 119, 0.35);
+    }
+
+    .btn-luxury-gold:hover::before {
+      background-position: right;
+      color: #fff2d1;
+    }
+
+    .btn-luxury-gold:active {
+      transform: scale(0.96);
+    }
+  </style>
+  <!-- END: Custom CSS -->
+</head>
+
+<body class="bg-[#FAF7F2] text-brand-espresso font-sans antialiased selection:bg-brand-gold selection:text-white">
+  <!-- BEGIN: TopAnnouncementBar -->
+  <div
+    class="bg-brand-espresso text-brand-goldLight text-xs tracking-widest uppercase font-medium py-2.5 px-4 text-center border-b border-brand-gold/30"
+    data-purpose="announcement-banner">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div id="table-banner-pill" class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-brand-gold/20 text-brand-goldLight text-[11px] font-semibold tracking-wider border border-brand-gold/40">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>A Parisian-Inspired Bistro Experience</span>
+      </div>
+      <p class="mx-auto md:mx-0 flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-xs">Open Daily 11:00 AM – 11:30 PM • Artisan Dining</span>
+      </p>
+      <a class="hidden lg:flex items-center gap-1.5 hover:text-brand-gold transition-colors text-xs"
+        href="tel:+919876543210">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path
+            d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z">
+          </path>
+        </svg>
+        <span class="">Enquiries: +91 98765 43210</span>
+      </a>
+    </div>
+  </div>
+  <!-- END: TopAnnouncementBar -->
+  <!-- BEGIN: MainHeader -->
+  <header class="sticky top-0 z-50 bg-[#FAF7F2]/95 backdrop-blur-md border-b border-brand-gold/25 transition-all"
+    data-purpose="site-navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 sm:h-24">
+        <a class="flex items-center py-1 group" href="#">
+          <img alt="Cafe de Casa Logo"
+            class="h-11 sm:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAfTSyDrLGepbZv55OC5azSi4TOFs9cIUhS0gxyCFxfvNTDYwko_8eXEs0EAH9tI7-Cc0yCetzuKYDDbrvvw7i9pD_6Y9dTXd77B3OVQ6nkaLhioMxv5W5YCsCuWxQj2dut0dMzTY2NjO39TA-r8Ww3kl2_U4LrO5Br02__a3tn3VOMWjKz5lWLOtXi44F0n8CvHPEazDOZ4wHJJpnybI5x0oMGUHxTsG5Ok6WsvQAasnbw9hEqJRWHg">
+        </a>
+        <nav
+          class="hidden lg:flex items-center space-x-8 text-sm uppercase tracking-wider font-medium text-brand-charcoal">
+          <a class="hover:text-brand-gold transition-colors" href="#about">About</a>
+          <a class="hover:text-brand-gold transition-colors" href="#specialities">Specialities</a>
+          <a class="hover:text-brand-gold transition-colors" href="#menu">Our Menu</a>
+          <a class="hover:text-brand-gold transition-colors" href="#gallery">Gallery</a>
+        </nav>
+        <div class="flex items-center gap-2.5 sm:gap-4">
+          <button id="nav-cart-btn"
+            class="flex items-center gap-1.5 px-3 py-2 bg-brand-gold/15 text-brand-espresso border border-brand-gold/50 rounded-sm text-xs font-semibold uppercase tracking-wider hover:bg-brand-gold hover:text-white transition cursor-pointer">
+            <span class="">🛒</span>
+            <span class="hidden sm:inline">Cart</span>
+            <span id="nav-cart-badge"
+              class="w-4 h-4 rounded-full bg-brand-gold text-brand-espresso text-[11px] font-bold flex items-center justify-center">0</span>
+          </button>
+          <a class="btn-luxury-gold !w-[124px] !h-[38px] text-[11px]"
+            data-label="ORDER NOW"
+            href="#menu">
+          </a>
+          <button aria-label="Toggle Navigation"
+            class="lg:hidden p-2 text-brand-espresso rounded hover:bg-brand-gold/10 focus:outline-none"
+            id="mobile-menu-btn">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="hidden lg:hidden py-4 border-t border-brand-gold/20 flex flex-col space-y-3 font-medium text-sm"
+        id="mobile-menu">
+        <a class="py-1.5 px-3 hover:bg-brand-gold/10 rounded text-brand-charcoal" href="#about">About &amp; Ambiance</a>
+        <a class="py-1.5 px-3 hover:bg-brand-gold/10 rounded text-brand-charcoal" href="#specialities">Chef's Pastas</a>
+        <a class="py-1.5 px-3 hover:bg-brand-gold/10 rounded text-brand-charcoal" href="#menu">Full Dining Menu</a>
+        <a class="py-1.5 px-3 hover:bg-brand-gold/10 rounded text-brand-charcoal" href="#gallery">Photo Gallery</a>
+        <div class="pt-2">
+          <a class="w-full block text-center py-2.5 bg-brand-gold text-white font-medium rounded-sm text-xs uppercase tracking-wider"
+            href="#menu">Explore Menu &amp; Order</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- END: MainHeader -->
+  <!-- BEGIN: HeroSection -->
+  <section
+    class="relative overflow-hidden pt-8 pb-16 lg:py-20 bg-gradient-to-b from-[#FAF7F2] via-brand-ivory to-[#FAF7F2]"
+    data-purpose="hero-experience">
+    <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden"><img
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFls4zYUu6uHguYTcs_G6PufVaoGlUicq64gL20YVLaQb-4rRCe7hULOp3cM6VceC3RG27h-3L48mKq0QLbFOSzh6_cpPtUdG6WPlHIEjCurQOGH9pwEp1ea24NffiAJbCr6kRmUhvUkCNuKo_3XEMNm4g_4ZBL-Os15Z4XPLtciLy9hLydQEYpHAnli9yD0rWEZjbSE1Ig3kC_tNA3Wbauh4ZzwhP4FYPGI954DZEX66VvIEvKAC0Iw"
+        alt="Cafe de Casa glowing entrance and cherry blossom dining hall"
+        class="w-full h-full object-cover object-center filter brightness-[0.92] saturate-[1.1]">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#FAF7F2] via-[#FAF7F2]/90 to-[#FAF7F2]/60"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-[#FAF7F2]/80 via-transparent to-[#FAF7F2]"></div>
+      <div class="absolute inset-0 backdrop-blur-[1.5px]"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+        <div class="lg:col-span-6 space-y-5 text-center lg:text-left z-10 backdrop-blur-sm">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-brand-gold/15 border border-brand-gold/30 text-brand-goldDark text-xs font-semibold tracking-widest uppercase">
+            <span class="">✨ Welcome to Pure Indulgence</span>
+          </div>
+          <h1
+            class="font-serif text-[32px] sm:text-5xl lg:text-6xl text-brand-espresso leading-[40px] sm:leading-[1.15] font-bold">
+            Where Art, Ambience &amp; <span class="gold-gradient-text italic font-serif font-normal">Gastronomy</span>
+            Meet.
+          </h1>
+          <p class="text-base sm:text-lg text-brand-muted max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">Art,
+            ambience, and pure vegetarian gastronomy under glowing Parisian blossoms.</p>
+          <div class="flex flex-wrap justify-center lg:justify-start gap-2 pt-1">
+            <span
+              class="text-xs bg-white/80 border border-brand-gold/30 px-3 py-1.5 rounded-md font-medium text-brand-charcoal shadow-sm">🌿
+              100% Pure Veg</span>
+            <span
+              class="text-xs bg-white/80 border border-brand-gold/30 px-3 py-1.5 rounded-md font-medium text-brand-charcoal shadow-sm">☕
+              Artisan Sips</span>
+            <span
+              class="text-xs bg-white/80 border border-brand-gold/30 px-3 py-1.5 rounded-md font-medium text-brand-charcoal shadow-sm">📸
+              Parisian Decor</span>
+          </div>
+          <div class="pt-2 sm:pt-4 flex flex-row items-center justify-center lg:justify-start gap-3">
+            <a class="btn-luxury-gold !w-[150px] !h-[44px] text-xs shadow-md"
+              data-label="FULL MENU"
+              href="#menu">
+            </a>
+            <a class="flex-1 sm:flex-initial px-6 sm:px-8 py-3 border-2 border-brand-espresso text-brand-espresso hover:bg-brand-espresso hover:text-white font-medium tracking-wide uppercase text-xs rounded-sm text-center transition min-h-[44px] inline-flex items-center justify-center"
+              href="#specialities">
+              Specialities
+            </a>
+          </div>
+          <div
+            class="pt-3 sm:pt-4 border-t border-brand-gold/20 flex items-center justify-center lg:justify-start gap-6 sm:gap-8 text-left">
+            <div>
+              <div class="font-serif text-xl sm:text-2xl font-bold text-brand-espresso">4.8★</div>
+              <div class="text-xs text-brand-muted">Gourmet Rating</div>
+            </div>
+            <div class="h-7 sm:h-8 w-[1px] bg-brand-gold/30"></div>
+            <div>
+              <div class="font-serif text-xl sm:text-2xl font-bold text-brand-espresso">50+</div>
+              <div class="text-xs text-brand-muted">Artisan Dishes</div>
+            </div>
+            <div class="h-7 sm:h-8 w-[1px] bg-brand-gold/30"></div>
+            <div>
+              <div class="font-serif text-xl sm:text-2xl font-bold text-brand-espresso">100%</div>
+              <div class="text-xs text-brand-muted">Pure Veg Bliss</div>
+            </div>
+          </div>
+        </div>
+        <div class="lg:col-span-6 relative mt-4 lg:mt-0">
+          <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 sm:gap-4 items-center">
+            <div class="sm:col-span-7 relative group">
+              <div class="relative overflow-hidden rounded-xl sm:rounded-2xl shadow-xl ornate-border">
+                <img alt="Cafe de Casa storefront facade illuminated at night"
+                  class="w-full h-64 sm:h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_X4FCh_00zCeJgtuw2vyJGyGffbW5RP_tkIQuWP1p8LainUUb67_SNYk-c4Yg1u2xx1xmUs-fVshk2yi9cPHertyJAEJoOClhbFdPnv5B72yPMlJsuFJuZxgJUfNdvRrqEbbuTEVDG1vLqyGsTmI12M2JBEbY7-Own2V68yoqNp0Sb_hGc0kXRzxbqjfVHZOg0T9dmZpWwQEH-5CZR0H22faYiCOysivPYvYBgbzeCljILScsLdpJpw">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-3 left-3 right-3 text-white">
+                  <span
+                    class="text-xs uppercase tracking-widest bg-brand-gold px-2 py-0.5 rounded font-medium inline-block">Warm
+                    Welcome</span>
+                  <p class="font-serif text-base font-semibold mt-1">Illuminated Evening Facade &amp; Patio</p>
+                </div>
+              </div>
+            </div>
+            <div class="sm:col-span-5 grid grid-cols-2 sm:grid-cols-1 gap-3 sm:space-y-4">
+              <div class="relative overflow-hidden rounded-xl shadow-lg ornate-border group">
+                <img alt="Cafe de Casa blossom tree dining hall"
+                  class="w-full h-36 sm:h-[220px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn6CfmnnD-MitcLtS6uZ4Pgpx3dvUZ-V2Nzx3lPdqpTshDGDSrV25j8wh_bgY8Q8TuVNPWGWQIQQ1b_sCRTBSi91C7pTYVlCr8ngaxPC0UVjaD4iNcMlpTZTHUcSJa7zkDxBgCnVFxHmxdSYin1KyczW4QuUr1pUo5gyXUdPKc9E_VYdZJJgbwewkrbXC3Qo5DV6PGA0UfTVsgCc9flmlV-1HqIxk6s4cp8DIxUwnl_sRVQiDXkYlrSw">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                <div class="absolute bottom-2 left-2 text-white">
+                  <span
+                    class="text-xs uppercase tracking-widest bg-white/20 backdrop-blur-sm px-1.5 py-0.5 rounded font-medium">Dining
+                    Hall</span>
+                  <p class="font-serif text-xs sm:text-sm font-semibold mt-0.5">Blossom Tree Canopy</p>
+                </div>
+              </div>
+              <div
+                class="bg-white p-3 sm:p-4 rounded-xl border border-brand-gold/30 shadow-md flex items-center gap-2.5 sm:gap-3">
+                <img alt="Cafe de Casa motif" class="w-12 sm:w-16 h-auto object-contain"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAfTSyDrLGepbZv55OC5azSi4TOFs9cIUhS0gxyCFxfvNTDYwko_8eXEs0EAH9tI7-Cc0yCetzuKYDDbrvvw7i9pD_6Y9dTXd77B3OVQ6nkaLhioMxv5W5YCsCuWxQj2dut0dMzTY2NjO39TA-r8Ww3kl2_U4LrO5Br02__a3tn3VOMWjKz5lWLOtXi44F0n8CvHPEazDOZ4wHJJpnybI5x0oMGUHxTsG5Ok6WsvQAasnbw9hEqJRWHg">
+                <div>
+                  <h4 class="font-serif text-sm font-bold text-brand-espresso">Artisan Cafe</h4>
+                  <p class="text-xs text-brand-muted">Parisian warmth &amp; charm</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: HeroSection -->
+  <!-- BEGIN: AboutAndAmbienceStory -->
+  <section class="py-20 bg-white border-y border-brand-gold/20" data-purpose="about-story" id="about">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">The Ambiance Story</span>
+        <h2 class="font-serif text-[26px] sm:text-4xl text-brand-espresso mt-2 font-bold leading-tight">An Enchanting
+          Parisian Escape</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-4 mb-3"></div>
+        <p class="text-brand-muted text-base leading-relaxed">A thoughtful blend of European romanticism, curated art,
+          and botanical serenity.</p>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Story Visual Gallery Column -->
+        <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+          <!-- Gallery Wall frame photo -->
+          <div class="space-y-4">
+            <div class="rounded-xl overflow-hidden ornate-border shadow-lg">
+              <img alt="Classical gilded museum style art gallery wall at Cafe de Casa"
+                class="w-full h-64 object-cover hover:scale-105 transition duration-500"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXjxjpH3SNv6GYygTK6l2PZi9s_GiliKoJcQ6HZCfZJXeJ9Z_8ouTDbFKp7zs971EX00BDYLFf95aU4x3VxCxfcoc4nap8CwtHa4Ouis5fGc96KzRGocZDbG0rG48t8iWzwA2Ln_N9_AyO64R6WNq1qMRaJgvoQsewQme7T9p3AarNlh1xqMBkQTkuWmC8HLa-IMx8acCfrgatesFjZLC5hwfE4qDApnuLLoW6GZ7cOOIVyBpwtnozOw">
+            </div>
+            <div class="bg-[#FAF7F2] p-4 rounded-xl border border-brand-gold/20 text-center">
+              <span class="font-serif text-2xl font-bold text-brand-goldDark">20+</span>
+              <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">French windows paired with classic
+                literature and artisan brews.</p>
+            </div>
+          </div>
+          <!-- Window reading corner photo -->
+          <div class="space-y-4 pt-6">
+            <div class="bg-[#FAF7F2] p-4 rounded-xl border border-brand-gold/20 text-center">
+              <span class="font-serif text-2xl font-bold text-brand-goldDark">100+</span>
+              <p class="text-xs text-brand-muted uppercase tracking-wider mt-1">Regal portraits and vintage gilt frames
+                creating an intimate backdrop.</p>
+            </div>
+            <div class="rounded-xl overflow-hidden ornate-border shadow-lg">
+              <img alt="Tropical sunlit window seat with curated books"
+                class="w-full h-64 object-cover hover:scale-105 transition duration-500"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiHpnFXdCGdlFCB__cwzjFGGF4CMMNAMQXI3d6m3gJ6ClD04GvGIKFT9KTIdPzMi4Zf_BIBO3TrKyQelDvq_8ZpFdtO6JQZZ8-dWDm1eXFYsfsYksS35uSpJaYyedp4_CWcEx2cMkArUxAfZ1m58ElEdXjh_mwQ5WXN8bHmqPDSa0Ilu3RK_stW1iiI3sXnjwgKs5HkPPWg1hlsAHx1HJ2jOmilNs0UbeRjZwyW0tM08WgqZqI34pOkQ">
+            </div>
+          </div>
+        </div>
+        <!-- Narrative Content Column -->
+        <div class="lg:col-span-6 space-y-6">
+          <h3 class="font-serif text-[22px] sm:text-3xl text-brand-espresso font-bold leading-snug">
+            Where Vintage Gilt Frames Meet Botanical Serenity
+          </h3>
+          <p class="text-brand-muted leading-relaxed text-base">From the grand cherry blossom canopy to sunlit reading
+            nooks, an enchanting sensorial retreat.</p>
+          <!-- Highlights List -->
+          <div class="space-y-4 pt-2">
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-full bg-brand-gold/15 text-brand-goldDark flex items-center justify-center shrink-0">
+                🎨
+              </div>
+              <div>
+                <h4 class="font-serif font-bold text-brand-espresso text-base">The Gilded Gallery Wall</h4>
+                <p class="text-sm text-brand-muted mt-0.5 leading-relaxed">Regal portraits and vintage gilt frames
+                  creating an intimate backdrop.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-full bg-brand-gold/15 text-brand-goldDark flex items-center justify-center shrink-0">
+                📖
+              </div>
+              <div>
+                <h4 class="font-serif font-bold text-brand-espresso text-base">Sunlit Reading Alcoves</h4>
+                <p class="text-sm text-brand-muted mt-0.5 leading-relaxed">French windows paired with classic literature
+                  and artisan brews.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-full bg-brand-gold/15 text-brand-goldDark flex items-center justify-center shrink-0">
+                🌸
+              </div>
+              <div>
+                <h4 class="font-serif font-bold text-brand-espresso text-base">The Blossom Pavilion</h4>
+                <p class="text-sm text-brand-muted mt-0.5 leading-relaxed">Moroccan lanterns, delicate florals, and
+                  relaxed Parisian charm.</p>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4">
+            <a class="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-brand-goldDark hover:text-brand-espresso transition"
+              href="#gallery">
+              <span class="">Explore The Visual Gallery</span>
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: AboutAndAmbienceStory -->
+  <!-- BEGIN: SignaturePastasAndSpecialities -->
+  <section class="py-20 bg-[#F6F1E7]/70" data-purpose="chef-specialities" id="specialities">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+        <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">From The Chef's Hearth</span>
+        <h2 class="font-serif text-[26px] sm:text-4xl text-brand-espresso mt-1 sm:mt-2 font-bold leading-tight">
+          Signature Pasta Trio &amp; Artful Sips</h2>
+        <div class="w-16 h-0.5 bg-brand-gold mx-auto mt-3 mb-2.5 sm:mt-4 sm:mb-3"></div>
+        <p class="text-brand-muted text-base leading-relaxed">Handcrafted al dente pastas paired with crisp garlic herb
+          baguettes.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+        <article
+          class="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500 ornate-border group flex flex-col justify-between">
+          <div class="relative overflow-hidden h-64 sm:h-72">
+            <img alt="Alfredo Pasta with garlic bread at Cafe de Casa"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8jHbQK8covKBwNj9OkT8jT4Ud5bUvPtMQXneGMv0v3VG3aXXstQZPAZMvRrWjIGaH_n5djiooyboz7UbGgWzCm0jFq5cm1BO1cd8h61w8hT4ZqHww6jRhlbVmvSLYoGQ2b1j5ky5HKCUbExHP_lBZEzr8SSGi3xnUGyBCJV9rllqLcmNp_ZaKTI1nDpJfJywnN5rLaRRJ7jr1TuBCoxmqIreniTMrCxROEyYF9dwYRp0VtYX2hj2FXA">
+            <div
+              class="absolute top-3 right-3 bg-brand-espresso/90 text-brand-gold text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border border-brand-gold/30">
+              Customer Favorite
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-serif text-[22px] font-bold text-brand-espresso">Alfredo Pasta</h3>
+                <span class="inline-flex items-center gap-1.5"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block" title="100% Vegan"></span>
+              </div>
+
+            </div>
+            <div class="pt-3 sm:pt-4 border-t border-brand-gold/15 flex items-center justify-between">
+              <div class="flex items-center gap-3"><span
+                  class="font-serif text-base sm:text-lg font-bold text-brand-espresso">₹390</span><button
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                    class="text-sm leading-none">+</span><span class="">Add</span></button></div><button
+                class="text-xs uppercase font-bold tracking-wider text-brand-goldDark hover:text-brand-espresso">Order
+                Now →</button>
+            </div>
+          </div>
+        </article>
+        <article
+          class="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500 ornate-border group flex flex-col justify-between">
+          <div class="relative overflow-hidden h-64 sm:h-72">
+            <img alt="Pesto Pasta with toasted garlic bread at Cafe de Casa"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzPwmY5NEeV9VAV1S_EQbPV8MwWs_kCyE8NERVhjn2qZsFqRQfpAjcAEw-t3TwMBK_QnXyRQWUEe9VOGk7vajYse-vWYCuF71J8OKgFgCxmba530FraTqA53Tl0T8Izv2fk7y4gK-u8I5lJ3tOGod2z2d_URxR5bkq3WNaTno5xruQAU4COG9wmKzZnqFhNEQlQboj21oFsYt6YFuxvHxCAWh1SgtBr8p_7b5hyrdheYqv5E6HR2dRFA">
+            <div
+              class="absolute top-3 right-3 bg-brand-gold text-white text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
+              Chef Signature
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-serif text-[22px] font-bold text-brand-espresso">Pesto Pasta</h3>
+                <span class="inline-flex items-center gap-1.5"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block" title="100% Vegan"></span>
+              </div>
+
+            </div>
+            <div class="pt-3 sm:pt-4 border-t border-brand-gold/15 flex items-center justify-between">
+              <div class="flex items-center gap-3"><span
+                  class="font-serif text-base sm:text-lg font-bold text-brand-espresso">₹390</span><button
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                    class="text-sm leading-none">+</span><span class="">Add</span></button></div><button
+                class="text-xs uppercase font-bold tracking-wider text-brand-goldDark hover:text-brand-espresso">Order
+                Now →</button>
+            </div>
+          </div>
+        </article>
+        <article
+          class="bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition duration-500 ornate-border group flex flex-col justify-between">
+          <div class="relative overflow-hidden h-64 sm:h-72">
+            <img alt="Arrabbiata spicy tomato pasta at Cafe de Casa"
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSm6pUNHYD7theqXQfhjI5YnPBSZVlW7JqduMiHL-1LhC6wneiBlHD_p8iVnKwLCRs7QsFP4OqzYk7bro5dT9K_k1rxLQp6jq_yGnB-RCHLalzXUcWbsXqB8hTvg3K5Okdiy2lI2sX-YGdxtcQ17fmykbuPfIhTWug8avAvVdtZK2L3lKisMBe_tvaQmtOOhAJk0B-R4ASqUW1_pQIISmAaXN85ZR4BHJuFdPeKDrQttCyUj5gJmcPtQ">
+            <div
+              class="absolute top-3 right-3 bg-red-700 text-white text-xs font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full shadow">
+              Spicy &amp; Tangy
+            </div>
+          </div>
+          <div class="p-5 sm:p-6 space-y-3 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="font-serif text-[22px] font-bold text-brand-espresso">Arrabbiata Pasta</h3>
+                <span class="inline-flex items-center gap-1.5"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block" title="100% Vegan"></span>
+              </div>
+
+            </div>
+            <div class="pt-3 sm:pt-4 border-t border-brand-gold/15 flex items-center justify-between">
+              <div class="flex items-center gap-3"><span
+                  class="font-serif text-base sm:text-lg font-bold text-brand-espresso">₹380</span><button
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                    class="text-sm leading-none">+</span><span class="">Add</span></button></div><button
+                class="text-xs uppercase font-bold tracking-wider text-brand-goldDark hover:text-brand-espresso">Order
+                Now →</button>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div
+        class="mt-8 sm:mt-12 bg-white rounded-xl sm:rounded-2xl ornate-border p-5 sm:p-10 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
+        <div class="lg:col-span-5 relative overflow-hidden rounded-xl">
+          <img alt="Cafe de Casa Pasta Trio Feast" class="w-full h-56 sm:h-80 object-cover rounded-xl"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc3aXcaJEhXA1JbvlL1goG1XQB9gyW3CYRz2mbmQb4rCG0JdbQXlCf4svmIbzWjBMhwr8eG8p90WAvYaKO49QJ-rEC7eXeyPU7887ngp5iBdX4eYGrAtb3FPJxxXjGBmo9N-IpLtZQ6n20jWzzQbjGYa9bRjAEtGLyW7Wzb4MfUNQu5I0u1U9UBDZr3C39KFlSSE5NSKvGEt2wgO1OcJSI7B1yAuASALvX5iN-b7f-3FtHseX_6y8i4Q">
+        </div>
+        <div class="lg:col-span-4 space-y-3 sm:space-y-4">
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-gold">The Experience</span>
+          <h3 class="font-serif text-[24px] sm:text-3xl font-bold text-brand-espresso leading-snug">"So, which one are
+            you ordering?"</h3>
+          <p class="text-base text-brand-muted leading-relaxed">
+            Can't decide? Visit us with loved ones to share our signature trio. Prepared freshly with hand-kneaded
+            sauces, olives, and artisan sourdough garlic bread.
+          </p>
+          <div class="pt-1">
+            <span
+              class="inline-block px-3 py-1 bg-brand-gold/10 text-brand-goldDark text-xs font-semibold rounded">Ideal
+              for 2 to 4 Guests</span>
+          </div>
+        </div>
+        <div
+          class="lg:col-span-3 text-center border-t lg:border-t-0 lg:border-l border-brand-gold/20 pt-4 lg:pt-0 lg:pl-6 space-y-3">
+          <div class="w-20 h-20 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-2 border-brand-gold shadow">
+            <img alt="Sunburst Refresher Mocktail" class="w-full h-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmjyxN6XrsZ26MP8kXpTSUt1lQym9Mkp67bSekFJtbrNi11si3dtjKILcDbYtAf8faxiRXaY67EvAIhLtdR95LqrX85wOhVkvdhk66GNDgOVPKyg-soFTDQmXPs8I9zTjr5a2MJG4aQJJVRGBoSfP27z5xCewLI5PLRRajGSy49FUMRSE_w9VCLWBx2CWlq5CyzuKRiiHhsKw-WpJfCv10IyxaIXdTxvgS7CM1oqL_uStvxdztbSZpLg">
+          </div>
+          <div>
+            <h4 class="font-serif font-bold text-brand-espresso text-base">Signature Sunburst</h4>
+            <p class="text-xs text-brand-muted mt-0.5">Pomegranate, crisp apple fan &amp; herbs.</p>
+            <div class="flex items-center justify-center gap-2 mt-1.5"><span
+                class="font-serif font-bold text-brand-goldDark text-base">₹175</span><button
+                class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                  class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: SignaturePastasAndSpecialities -->
+  <!-- BEGIN: InteractiveMenuSection -->
+  <section class="py-20 bg-brand-cream relative" data-purpose="restaurant-full-menu" id="menu">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Header with classic Parisian bistro touch -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs tracking-[0.25em] uppercase text-brand-goldDark font-semibold">Carte du Jour</span>
+        <h2 class="font-serif text-[28px] sm:text-5xl text-brand-espresso mt-2 font-bold tracking-tight leading-tight">
+          Explore Our Full Menu</h2>
+        <div class="flex items-center justify-center gap-3 my-4">
+          <span class="h-[1px] w-12 bg-brand-gold/40"></span>
+          <span class="text-brand-gold text-xs">❦</span>
+          <span class="h-[1px] w-12 bg-brand-gold/40"></span>
+        </div>
+        <p class="text-brand-muted text-base leading-relaxed font-normal">Crafted with pure vegetarian integrity,
+          mindful seasonal produce, and timeless bistro finesse.</p>
+      </div>
+      <!-- Refined Category Tab Bar -->
+      <div class="mb-12" data-purpose="menu-tabs-wrapper">
+        <div
+          class="flex items-center justify-start md:justify-center gap-2 overflow-x-auto pb-3 border-b border-brand-gold/20 no-scrollbar">
+          <button
+            class="menu-tab-btn active shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-brand-gold text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('all', this)">
+            All Selections
+          </button>
+          <button
+            class="menu-tab-btn shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-transparent text-brand-muted hover:text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('starters-chaat', this)">
+            Starters &amp; Chaat
+          </button>
+          <button
+            class="menu-tab-btn shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-transparent text-brand-muted hover:text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('combos-meals', this)">
+            Combos &amp; Thalis
+          </button>
+          <button
+            class="menu-tab-btn shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-transparent text-brand-muted hover:text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('sandwiches-burgers', this)">
+            Breads &amp; Sandwiches
+          </button>
+          <button
+            class="menu-tab-btn shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-transparent text-brand-muted hover:text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('pan-asian', this)">
+            Pan Asian
+          </button>
+          <button
+            class="menu-tab-btn shrink-0 px-4 py-2 text-xs uppercase tracking-wider font-semibold border-b-2 border-transparent text-brand-muted hover:text-brand-espresso transition-colors duration-200"
+            onclick="filterMenu('beverages', this)">
+            Sips &amp; Brews
+          </button>
+        </div>
+      </div>
+      <!-- Elegant Parisian Menu Booklet Layout -->
+      <div class="bg-white rounded-2xl border border-brand-gold/30 p-6 sm:p-12 shadow-sm space-y-12"
+        id="menu-items-grid">
+        <div class="menu-category-block space-y-6" data-category-group="starters-chaat">
+          <div class="text-center pb-2"><span
+              class="text-xs font-serif uppercase tracking-[0.2em] text-brand-goldDark font-bold">— Hors-d'œuvre &amp;
+              Chaat —</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl text-brand-espresso font-semibold mt-1">Indian Tandoori &amp;
+              Street Chaat</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Hara Bhara Kebab</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹250</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Dahi Kebab</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Special</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹275</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Paneer Tikka</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Flavored</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹350</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Kandhari Mushroom Tikka</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹400</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Tandoori Platter</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Chef's
+                    Special</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹475</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Dahi Papdi Chaat</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹130</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Pani Puri</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹110</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="starters-chaat">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Mexican Cheese Vada Pav</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹100</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-category-block space-y-6 pt-6 border-t border-brand-gold/20"
+          data-category-group="combos-meals">
+          <div class="text-center pb-2"><span
+              class="text-xs font-serif uppercase tracking-[0.2em] text-brand-goldDark font-bold">— Plats Principaux
+              —</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl text-brand-espresso font-semibold mt-1">Signature Combos &amp;
+              Royal Thalis</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Chole Bhature</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Favorite</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹280</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Pav Bhaji / Cheese Pav Bhaji</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹180 / ₹200</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Rice &amp; Curry with Dal Makhani</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹390</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Royal Meal Combo: Butter Paneer</h4>
+                  <span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Signature</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹450</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Tandoori Paratha Platter (2 Pcs)</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹220 / ₹250</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="combos-meals">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Garlic Naan</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Tandoor Special</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹90</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-category-block space-y-6 pt-6 border-t border-brand-gold/20"
+          data-category-group="sandwiches-burgers">
+          <div class="text-center pb-2"><span
+              class="text-xs font-serif uppercase tracking-[0.2em] text-brand-goldDark font-bold">— Pains &amp;
+              Sandwichs —</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl text-brand-espresso font-semibold mt-1">Artisan Sourdough
+              &amp; Burgers</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="sandwiches-burgers">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Avocado Toast</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Bistro
+                    Choice</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹230</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="sandwiches-burgers">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Mumbai Masala Club Sandwich</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹230</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="sandwiches-burgers">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Cheese Burst Sandwich</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹230</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="sandwiches-burgers">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Cafe de Casa Special Burger</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹230</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-category-block space-y-6 pt-6 border-t border-brand-gold/20" data-category-group="pan-asian">
+          <div class="text-center pb-2"><span
+              class="text-xs font-serif uppercase tracking-[0.2em] text-brand-goldDark font-bold">— Wok &amp; Saveurs
+              d'Asie —</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl text-brand-espresso font-semibold mt-1">Pan Asian Specialties
+            </h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="pan-asian">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Honey Chilli Potato</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹260</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="pan-asian">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Burnt Garlic Noodles</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹290</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="pan-asian">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Thai Curry with Jasmine Rice</h4><span
+                    class="text-xs uppercase tracking-wider text-brand-goldDark bg-brand-gold/10 px-2 py-0.5 rounded font-medium">Specialty</span>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹375</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="pan-asian">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Veg Noodles with Manchurian Combo</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹400</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="menu-category-block space-y-6 pt-6 border-t border-brand-gold/20" data-category-group="beverages">
+          <div class="text-center pb-2"><span
+              class="text-xs font-serif uppercase tracking-[0.2em] text-brand-goldDark font-bold">— Boissons &amp; Cafés
+              —</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl text-brand-espresso font-semibold mt-1">Cold-Pressed Juices
+              &amp; Artisan Brews</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="beverages">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Power Punch Juice</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹175</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="beverages">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Green Glow Cleanser</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹175</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="beverages">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Cardamom or Masala Chai</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹85</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+            <div class="menu-item-card py-2.5 border-b border-brand-gold/10" data-category="beverages">
+              <div class="flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2"><img src="veg-icon.png" alt="100% Vegan" class="w-5 h-5 object-contain inline-block shrink-0" title="100% Vegan">
+                  <h4 class="font-serif font-bold text-base text-brand-espresso">Hazelnut Latte / Hot Chocolate</h4>
+                </div>
+                <div class="flex items-center gap-2 shrink-0"><span
+                    class="font-serif font-semibold text-brand-espresso text-base">₹170</span><button
+                    class="inline-flex items-center gap-1 px-2.5 py-1 min-h-[32px] rounded-full border border-brand-gold/50 bg-brand-gold/10 hover:bg-brand-gold hover:text-white text-brand-espresso text-xs font-semibold tracking-wide transition shadow-sm active:scale-95"><span
+                      class="text-sm leading-none">+</span><span class="">Add</span></button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Subdued, elegant note -->
+      <div class="mt-12 text-center">
+        <p class="text-xs text-brand-muted tracking-wide">Taxes applicable as per government directives. Prepared purely
+          vegetarian in separate dedicated culinary sections.</p>
+      </div>
+    </div>
+  </section>
+  <!-- END: InteractiveMenuSection -->
+  <!-- BEGIN: CafeVisualGallery -->
+  <section class="py-20 bg-white" data-purpose="bistro-visual-gallery" id="gallery">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-brand-gold font-bold">Moments of Charm</span>
+          <h2 class="font-serif text-[26px] sm:text-4xl text-brand-espresso mt-1 font-bold leading-tight">The Cafe
+            Gallery</h2>
+          <div class="w-12 h-0.5 bg-brand-gold mt-2 sm:mt-3"></div>
+        </div>
+        <p class="text-brand-muted text-base max-w-md mt-3 md:mt-0 leading-relaxed">Artisan coffee, sunlit corners, and
+          memorable evenings.</p>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div
+          class="sm:col-span-2 lg:col-span-2 row-span-2 relative group overflow-hidden rounded-xl sm:rounded-2xl ornate-border">
+          <img alt="Cafe de Casa evening facade and outdoor patio"
+            class="w-full h-72 sm:h-[480px] object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_X4FCh_00zCeJgtuw2vyJGyGffbW5RP_tkIQuWP1p8LainUUb67_SNYk-c4Yg1u2xx1xmUs-fVshk2yi9cPHertyJAEJoOClhbFdPnv5B72yPMlJsuFJuZxgJUfNdvRrqEbbuTEVDG1vLqyGsTmI12M2JBEbY7-Own2V68yoqNp0Sb_hGc0kXRzxbqjfVHZOg0T9dmZpWwQEH-5CZR0H22faYiCOysivPYvYBgbzeCljILScsLdpJpw">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent opacity-90 transition">
+          </div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <span
+              class="text-xs uppercase tracking-wider bg-brand-gold px-2.5 py-1 rounded inline-block font-semibold">The
+              Evening Facade</span>
+            <h3 class="font-serif text-[22px] sm:text-2xl font-bold mt-1.5 leading-snug">Parisian Verandah &amp;
+              Welcoming Entrance</h3>
+
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-xl sm:rounded-2xl ornate-border">
+          <img alt="Cherry blossom dining hall crowd"
+            class="w-full h-52 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn6CfmnnD-MitcLtS6uZ4Pgpx3dvUZ-V2Nzx3lPdqpTshDGDSrV25j8wh_bgY8Q8TuVNPWGWQIQQ1b_sCRTBSi91C7pTYVlCr8ngaxPC0UVjaD4iNcMlpTZTHUcSJa7zkDxBgCnVFxHmxdSYin1KyczW4QuUr1pUo5gyXUdPKc9E_VYdZJJgbwewkrbXC3Qo5DV6PGA0UfTVsgCc9flmlV-1HqIxk6s4cp8DIxUwnl_sRVQiDXkYlrSw">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+            <p class="text-white text-sm font-serif font-semibold">Blossom Tree Sanctuary</p>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-xl sm:rounded-2xl ornate-border">
+          <img alt="Gold framed paintings art wall"
+            class="w-full h-52 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXjxjpH3SNv6GYygTK6l2PZi9s_GiliKoJcQ6HZCfZJXeJ9Z_8ouTDbFKp7zs971EX00BDYLFf95aU4x3VxCxfcoc4nap8CwtHa4Ouis5fGc96KzRGocZDbG0rG48t8iWzwA2Ln_N9_AyO64R6WNq1qMRaJgvoQsewQme7T9p3AarNlh1xqMBkQTkuWmC8HLa-IMx8acCfrgatesFjZLC5hwfE4qDApnuLLoW6GZ7cOOIVyBpwtnozOw">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+            <p class="text-white text-sm font-serif font-semibold">Gilded Heritage Gallery Wall</p>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-xl sm:rounded-2xl ornate-border">
+          <img alt="Window library alcove with books"
+            class="w-full h-52 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCiHpnFXdCGdlFCB__cwzjFGGF4CMMNAMQXI3d6m3gJ6ClD04GvGIKFT9KTIdPzMi4Zf_BIBO3TrKyQelDvq_8ZpFdtO6JQZZ8-dWDm1eXFYsfsYksS35uSpJaYyedp4_CWcEx2cMkArUxAfZ1m58ElEdXjh_mwQ5WXN8bHmqPDSa0Ilu3RK_stW1iiI3sXnjwgKs5HkPPWg1hlsAHx1HJ2jOmilNs0UbeRjZwyW0tM08WgqZqI34pOkQ">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+            <p class="text-white text-sm font-serif font-semibold">Sun-Drenched Garden Views</p>
+          </div>
+        </div>
+        <div class="relative group overflow-hidden rounded-xl sm:rounded-2xl ornate-border">
+          <img alt="Pasta feast close up"
+            class="w-full h-52 sm:h-56 object-cover transition-transform duration-700 group-hover:scale-105"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc3aXcaJEhXA1JbvlL1goG1XQB9gyW3CYRz2mbmQb4rCG0JdbQXlCf4svmIbzWjBMhwr8eG8p90WAvYaKO49QJ-rEC7eXeyPU7887ngp5iBdX4eYGrAtb3FPJxxXjGBmo9N-IpLtZQ6n20jWzzQbjGYa9bRjAEtGLyW7Wzb4MfUNQu5I0u1U9UBDZr3C39KFlSSE5NSKvGEt2wgO1OcJSI7B1yAuASALvX5iN-b7f-3FtHseX_6y8i4Q">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end p-3 sm:p-4">
+            <p class="text-white text-sm font-serif font-semibold">Table of Celebration</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- END: CafeVisualGallery -->
+  <!-- BEGIN: MainFooter -->
+  <footer class="bg-brand-espresso text-[#E8DFD8] border-t border-brand-gold/40 pt-16 pb-10" data-purpose="site-footer">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+        <!-- Col 1: Logo & Essence -->
+        <div class="lg:col-span-4 space-y-4">
+          <img alt="Cafe de Casa Gold Logo" class="h-14 w-auto object-contain brightness-110"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAfTSyDrLGepbZv55OC5azSi4TOFs9cIUhS0gxyCFxfvNTDYwko_8eXEs0EAH9tI7-Cc0yCetzuKYDDbrvvw7i9pD_6Y9dTXd77B3OVQ6nkaLhioMxv5W5YCsCuWxQj2dut0dMzTY2NjO39TA-r8Ww3kl2_U4LrO5Br02__a3tn3VOMWjKz5lWLOtXi44F0n8CvHPEazDOZ4wHJJpnybI5x0oMGUHxTsG5Ok6WsvQAasnbw9hEqJRWHg">
+          <p class="text-base text-brand-goldLight/80 leading-relaxed max-w-sm">
+            A sanctuary of classic romance, artisan brews, world pasta, and authentic Indian culinary favorites amidst a
+            Parisian-styled gallery hall.
+          </p>
+          <div class="flex items-center space-x-3 pt-2">
+            <a aria-label="Instagram"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition"
+              href="#">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Facebook"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition"
+              href="#">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                </path>
+              </svg>
+            </a>
+            <a aria-label="Location"
+              class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-gold hover:bg-brand-gold hover:text-white transition"
+              href="#">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 0c-4.198 0-8 3.802-8 8.002 0 5.405 7.108 15.112 7.412 15.524.155.21.397.329.651.329.253 0 .495-.119.65-.329.305-.412 7.413-10.119 7.413-15.524 0-4.2-3.802-8.002-8.002-8.002zm0 12c-2.209 0-4-1.791-4-4s1.791-4 4-4 4 1.791 4 4-1.791 4-4 4z">
+                </path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <!-- Col 2: Fast Navigation -->
+        <div class="lg:col-span-2 space-y-3">
+          <h4 class="font-serif text-sm font-bold text-brand-gold uppercase tracking-wider">Quick Links</h4>
+          <ul class="text-sm space-y-2 text-[#C8BFB8]">
+            <li class=""><a class="hover:text-brand-gold transition" href="#about">Our Story</a></li>
+            <li class=""><a class="hover:text-brand-gold transition" href="#specialities">Chef's Specialities</a></li>
+            <li class=""><a class="hover:text-brand-gold transition" href="#menu">Full Dining Menu</a></li>
+            <li class=""><a class="hover:text-brand-gold transition" href="#gallery">Photo Gallery</a></li>
+          </ul>
+        </div>
+        <!-- Col 3: Gastronomy Highlights -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-serif text-sm font-bold text-brand-gold uppercase tracking-wider">Popular Delights</h4>
+          <ul class="text-sm space-y-2 text-[#C8BFB8]">
+            <li class="">• Alfredo &amp; Pesto Gourmet Pasta</li>
+            <li class="">• Amritsari Chole Bhature &amp; Pav Bhaji</li>
+            <li class="">• Malai Broccoli &amp; Paneer Tikka</li>
+            <li class="">• Cold-Pressed Power Punch Juices</li>
+            <li class="">• Schezwan Fried Rice &amp; Hakka Noodles</li>
+          </ul>
+        </div>
+        <!-- Col 4: Newsletter / Stay Connected -->
+        <div class="lg:col-span-3 space-y-3">
+          <h4 class="font-serif text-sm font-bold text-brand-gold uppercase tracking-wider">Stay In Touch</h4>
+          <p class="text-sm text-[#C8BFB8]">Receive invitations for seasonal menu tastings, live acoustic evenings and
+            offers.</p>
+          <form class="space-y-2.5" onsubmit="event.preventDefault(); alert('Subscribed to Cafe de Casa updates!');">
+            <input
+              class="w-full text-xs px-3 py-2.5 bg-white/5 border border-brand-gold/30 rounded text-white placeholder-stone-400 focus:outline-none focus:border-brand-gold"
+              placeholder="Enter your email" required="" type="email">
+            <button
+              class="btn-luxury-gold !w-full"
+              data-label="SUBSCRIBE"
+              type="submit">
+            </button>
+          </form>
+        </div>
+      </div>
+      <!-- Copyright bar -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#9E948D] gap-4">
+        <p class="">© 2025 Cafe de Casa. All Rights Reserved. Crafted with French elegance.</p>
+        <p class="flex items-center gap-4">
+          <a class="hover:underline" href="#">Privacy Policy</a>
+          <span class="">•</span>
+          <a class="hover:underline" href="#">Terms of Service</a>
+          <span class="">•</span>
+          <span class="text-brand-gold">Pure Vegetarian Bistro</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+  <!-- END: MainFooter -->
+  <!-- BEGIN: FloatingCartButton -->
+  <div class="fixed bottom-5 right-5 z-50" id="floating-cart-indicator">
+    <button aria-label="View Cart" id="floating-cart-btn"
+      class="flex items-center gap-2.5 px-4 py-2.5 bg-brand-espresso/95 hover:bg-brand-espresso text-brand-goldLight rounded-full shadow-2xl border border-brand-gold/60 backdrop-blur-md transition-all duration-300 hover:scale-105 active:scale-95 group cursor-pointer">
+      <span class="text-base leading-none">🛒</span>
+      <span
+        class="text-xs font-semibold uppercase tracking-wider text-brand-goldLight group-hover:text-white transition-colors">Cart</span>
+      <span id="floating-cart-badge"
+        class="w-5 h-5 rounded-full bg-brand-gold text-brand-espresso text-[11px] font-bold flex items-center justify-center shadow-sm">0</span>
+    </button>
+  </div>
+  <!-- END: FloatingCartButton -->
+
+  <!-- BEGIN: CartDrawer -->
+  <div id="cart-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden transition-opacity"></div>
+  <aside id="cart-drawer" class="fixed inset-y-0 right-0 w-full sm:w-[420px] bg-[#FAF7F2] shadow-2xl border-l border-brand-gold/30 z-50 flex flex-col justify-between translate-x-full transition-transform duration-300 ease-in-out">
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-brand-gold/20 flex items-center justify-between bg-brand-cream">
+      <div>
+        <h3 class="font-serif font-bold text-lg text-brand-espresso">Your Dining Cart</h3>
+        <div id="cart-drawer-table" class="text-xs uppercase tracking-wider font-semibold text-brand-goldDark">Table 04 • Blossom Hall</div>
+      </div>
+      <button id="close-cart-btn" class="p-2 text-brand-muted hover:text-brand-espresso rounded-full hover:bg-brand-gold/10 transition text-lg leading-none cursor-pointer" aria-label="Close Cart">✕</button>
+    </div>
+
+    <!-- Drawer Body -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-4">
+      <div id="cart-empty-state" class="py-16 text-center text-brand-muted space-y-3">
+        <div class="text-4xl">🍽️</div>
+        <p class="font-serif text-base font-semibold text-brand-espresso">Your cart is empty</p>
+        <p class="text-xs max-w-xs mx-auto">Explore our culinary specialities and select '+ Add' on any dish to order.</p>
+      </div>
+
+      <div id="cart-items-container" class="divide-y divide-brand-gold/10">
+        <!-- Rendered items go here -->
+      </div>
+
+      <div id="cart-notes-container" class="pt-2">
+        <label class="block text-xs font-semibold uppercase tracking-wider text-brand-goldDark mb-1.5" for="cart-special-instructions">
+          Special Instructions (Optional)
+        </label>
+        <textarea id="cart-special-instructions" rows="2"
+                  placeholder="e.g. Less spicy, serve together, extra napkins..."
+                  class="w-full text-xs p-3 bg-white border border-brand-gold/30 rounded focus:border-brand-gold focus:outline-none placeholder-brand-muted resize-none shadow-inner"></textarea>
+      </div>
+
+      <div id="cart-error-banner" class="hidden p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded font-medium"></div>
+    </div>
+
+    <!-- Drawer Footer -->
+    <div id="cart-footer" class="p-5 border-t border-brand-gold/20 bg-brand-cream space-y-3 hidden">
+      <div class="flex items-center justify-between text-xs text-brand-muted">
+        <span>Items Subtotal</span>
+        <span id="cart-subtotal" class="font-serif font-bold text-brand-espresso">₹0</span>
+      </div>
+      <div class="flex items-center justify-between text-sm font-bold text-brand-espresso pt-1 border-t border-brand-gold/15">
+        <span>Total Payable</span>
+        <span id="cart-total" class="font-serif text-lg text-brand-goldDark">₹0</span>
+      </div>
+      <button id="place-order-btn" onclick="window.CustomerOrdering.submitCustomerOrder()"
+              class="w-full py-3.5 bg-brand-espresso hover:bg-brand-goldDark text-brand-goldLight hover:text-white border border-brand-gold font-bold uppercase tracking-widest text-xs rounded shadow-md transition-all active:scale-98 flex items-center justify-center gap-2 cursor-pointer">
+        <span id="place-order-text">Place Order</span>
+      </button>
+      <p class="text-[11px] text-center text-brand-muted tracking-wide">
+        🔒 Real-time dining order verified by table token
+      </p>
+    </div>
+  </aside>
+  <!-- END: CartDrawer -->
+
+  <!-- BEGIN: OrderConfirmationModal -->
+  <div id="order-confirmation-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs hidden">
+    <div class="bg-[#FAF7F2] border border-brand-gold/40 rounded-2xl max-w-md w-full p-6 sm:p-8 shadow-2xl text-center space-y-4">
+      <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 border border-emerald-300 flex items-center justify-center text-emerald-700 text-3xl shadow-sm">
+        ✓
+      </div>
+      <div class="space-y-1">
+        <span id="conf-subtitle" class="text-xs uppercase tracking-[0.2em] font-bold text-brand-goldDark">Order Confirmed</span>
+        <h3 id="conf-main-title" class="font-serif text-2xl font-bold text-brand-espresso">Sent to Kitchen</h3>
+      </div>
+      <div class="inline-block px-4 py-1.5 bg-brand-gold/15 text-brand-espresso font-mono font-bold text-sm rounded-full border border-brand-gold/40">
+        <span id="conf-order-number">ORD-XXXX</span>
+      </div>
+      <p class="text-xs uppercase tracking-wider font-bold text-brand-espresso" id="conf-table-info">Table 04 • Blossom Hall</p>
+
+      <div class="text-left bg-white p-3.5 rounded-lg border border-brand-gold/20 max-h-48 overflow-y-auto space-y-1.5" id="conf-items-list">
+        <!-- Confirmed items breakdown -->
+      </div>
+
+      <div id="conf-instructions" class="text-xs text-left text-brand-muted hidden px-1"></div>
+
+      <div class="flex items-center justify-between pt-2 border-t border-brand-gold/20 text-xs font-bold text-brand-espresso">
+        <span>Order Total</span>
+        <span id="conf-total-amount" class="font-serif text-base text-brand-goldDark">₹0</span>
+      </div>
+
+      <div id="conf-status-box" class="p-2.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-medium flex items-center justify-center gap-2 transition-all">
+        <span id="conf-status-dot" class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+        <span id="conf-status-text">Kitchen preparing your delicacies</span>
+      </div>
+
+      <button id="conf-continue-btn" onclick="window.CustomerOrdering.closeConfirmationModal()"
+              class="w-full py-3 bg-brand-gold hover:bg-brand-goldDark text-white text-xs font-bold uppercase tracking-wider rounded transition shadow-sm cursor-pointer">
+        Continue Dining
+      </button>
+    </div>
+  </div>
+  <!-- END: OrderConfirmationModal -->
+
+  <!-- Supabase CDN Client & Application Configuration -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js"></script>
+  <script src="js/supabase-service.js"></script>
+  <script src="js/customer-ordering.js"></script>
+
+  <!-- BEGIN: InteractiveScripts -->
+  <script data-purpose="mobile-menu-interactivity">
+    // Mobile navigation toggle
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking links on mobile
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+  <script data-purpose="menu-filtering-functionality">
+    // Interactive Tab Filter for Menu Items
+    function filterMenu(category, buttonElement) {
+      // Toggle button styles
+      const buttons = document.querySelectorAll('.menu-tab-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-brand-gold', 'text-brand-espresso');
+        btn.classList.add('border-transparent', 'text-brand-muted');
+      });
+
+      buttonElement.classList.remove('border-transparent', 'text-brand-muted');
+      buttonElement.classList.add('border-brand-gold', 'text-brand-espresso');
+
+      // Filter category groups
+      const categoryBlocks = document.querySelectorAll('.menu-category-block');
+      categoryBlocks.forEach(block => {
+        if (category === 'all' || block.getAttribute('data-category-group') === category) {
+          block.classList.remove('hidden');
+        } else {
+          block.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+  <!-- END: InteractiveScripts -->
+
+
+</body>
+
+</html>
